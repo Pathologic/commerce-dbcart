@@ -94,7 +94,7 @@ class DbCartStore implements CartStore
             while ($row = $this->modx->db->getRow($q)) {
                 $items[$row['row']] = [
                     'id'      => $row['product_id'],
-                    'title'   => $row['title'],
+                    'name'    => $row['title'],
                     'price'   => $row['price'],
                     'count'   => $row['count'],
                     'hash'    => $row['hash'],
