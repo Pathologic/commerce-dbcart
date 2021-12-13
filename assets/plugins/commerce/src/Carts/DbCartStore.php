@@ -55,13 +55,13 @@ class DbCartStore implements CartStore
             $data = [
                 'cart_id'    => $this->id,
                 'product_id' => (int) $item['id'],
-                'hash'       => $this->modx->db->escape($item['hash']),
+                'hash'       => $item['hash'],
                 'row'        => $row,
-                'title'      => $this->modx->db->escape(trim(isset($item['title']) ? $item['title'] : $item['name'])),
+                'title'      => trim(isset($item['title']) ? $item['title'] : $item['name']),
                 'price'      => $this->normalizeFloat($item['price']),
                 'count'      => $this->normalizeFloat($item['count']),
-                'options'    => $this->modx->db->escape(json_encode(isset($item['options']) && is_array($item['options']) ? $item['options'] : [], JSON_UNESCAPED_UNICODE)),
-                'meta'       => $this->modx->db->escape(json_encode(isset($item['meta']) && is_array($item['meta']) ? $item['meta'] : [], JSON_UNESCAPED_UNICODE)),
+                'options'    => json_encode(isset($item['options']) && is_array($item['options']) ? $item['options'] : [], JSON_UNESCAPED_UNICODE),
+                'meta'       => json_encode(isset($item['meta']) && is_array($item['meta']) ? $item['meta'] : [], JSON_UNESCAPED_UNICODE),
             ];
             $fields = '`' . implode('`,`', array_keys($data)) . '`';
             $values = \APIhelpers::sanitarIn(array_values($data));
