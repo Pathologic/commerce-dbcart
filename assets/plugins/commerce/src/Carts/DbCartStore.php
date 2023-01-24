@@ -57,7 +57,7 @@ class DbCartStore implements CartStore
                 'product_id' => (int) $item['id'],
                 'hash'       => $item['hash'],
                 'row'        => $row,
-                'title'      => trim(isset($item['title']) ? $item['title'] : $item['name']),
+                'title'      => $this->modx->db->escape(trim(isset($item['title']) ? $item['title'] : $item['name'])),
                 'price'      => $this->normalizeFloat($item['price']),
                 'count'      => $this->normalizeFloat($item['count']),
                 'options'    => json_encode(isset($item['options']) && is_array($item['options']) ? $item['options'] : [], JSON_UNESCAPED_UNICODE),
