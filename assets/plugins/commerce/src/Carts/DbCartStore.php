@@ -119,7 +119,7 @@ class DbCartStore implements CartStore
         $instance = $this->modx->db->escape($this->instance);
         $updated_at = date('Y-m-d H:i:s', time() + $this->modx->getConfig('server_offset_time'));
         $q = $this->modx->db->query("INSERT INTO {$this->modx->getFullTableName('commerce_db_carts')} (`instance`, `hash`, `customer_id`, `updated_at`) VALUES ('{$instance}', '{$hash}', {$customer_id}, '{$updated_at}')");
-        if ($id = $this->modx->db->getInsertId($q)) {
+        if ($id = $this->modx->db->getInsertId()) {
             $this->id = $id;
             $this->setCookie($id . '|' . $hash);
         }
